@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPP — Don't Postpone Passion | The Teranga. 150 people will own this.</title>
+<meta name="description" content="DPP — Don't Postpone Passion. The Teranga: a limited wooden timepiece rooted in Senegal. $221. 150 pieces worldwide. The rest will watch.">
+<meta property="og:title" content="DPP — The Teranga. 150 people will own this.">
+<meta property="og:description" content="Don't Postpone Passion. A limited wooden timepiece rooted in Senegal — $221, 150 numbered pieces, baobab-engraved caseback.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/teaser-poster.jpg">
+<link rel="icon" type="image/png" href="img/logo-mark.png">
+
+<!--
+  ============ DPP STORE CONFIG ============
+  STRIPE: Stripe dashboard → Payment Links → New → "The Teranga" at $221,
+  limit available quantity to 150 → copy the URL → paste it into
+  STRIPE_PAYMENT_LINK in the <script> at the bottom of this file.
+  As pieces sell, update the SOLD number in the same place.
+  ==========================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "The Teranga — DPP Drop 001",
+  "brand": {"@type": "Brand", "name": "DPP — Don't Postpone Passion"},
+  "description": "Limited wooden timepiece rooted in Senegal. 150 numbered pieces. Baobab-engraved caseback, hourglass crown.",
+  "image": "img/product-watch.jpg",
+  "offers": {"@type": "Offer", "price": "221", "priceCurrency": "USD", "availability": "https://schema.org/LimitedAvailability"}
+}
+</script>
+
+<style>
+:root{
+  --ink:#14172B;
+  --deep:#0A0B15;
+  --pale:#EEF1F9;
+  --white:#FFFFFF;
+  --gold:#B98A4A;
+  --line:rgba(20,23,43,.12);
+  --line-inv:rgba(238,241,249,.16);
+  --muted:rgba(20,23,43,.62);
+  --muted-inv:rgba(238,241,249,.66);
+  --display:'Archivo Black','Arial Black',Impact,sans-serif;
+  --body:'Inter','Helvetica Neue',Arial,sans-serif;
+  --max:1240px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--white);color:var(--ink);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,svg,video{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+.display{font-family:var(--display);text-transform:uppercase;line-height:.96;letter-spacing:-.005em}
+.micro{font-weight:600;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase}
+.micro.gold{color:var(--gold)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* white-logo helper: navy PNG → white */
+.logo-white{filter:brightness(0) invert(1)}
+
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* announcement */
+.announce{background:var(--deep);color:var(--pale);text-align:center;padding:11px 18px;font-weight:600;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase}
+.announce em{font-style:normal;color:var(--gold)}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;min-height:76px;gap:20px}
+.brand{display:inline-flex;align-items:center;text-decoration:none}
+.brand img{height:46px;width:auto}
+.nav-links{display:flex;align-items:center;gap:34px;list-style:none}
+.nav-links a{text-decoration:none;font-weight:600;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:14px 2px;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:15px 34px;font-weight:700;font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border:1px solid var(--ink);background:var(--ink);color:var(--white);cursor:pointer;transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .2s,color .2s;touch-action:manipulation}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(10,11,21,.22)}
+.btn:active{transform:translateY(0) scale(.98);box-shadow:none}
+.btn-outline{background:transparent;color:var(--ink)}
+.btn-outline:hover{background:var(--ink);color:var(--white)}
+.btn-inverse{background:var(--pale);border-color:var(--pale);color:var(--ink)}
+.btn-inverse:hover{box-shadow:0 10px 28px rgba(0,0,0,.35)}
+.btn-outline-inv{background:transparent;border-color:rgba(238,241,249,.5);color:var(--pale)}
+.btn-outline-inv:hover{border-color:var(--pale);box-shadow:none}
+.nav .btn{min-height:46px;padding:11px 26px}
+@media(max-width:860px){.nav-links{display:none}}
+
+/* hero */
+.hero{position:relative;min-height:96svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:var(--deep);color:var(--pale)}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,11,21,.15) 0%,rgba(10,11,21,.72) 100%)}
+.hero-content{position:relative;z-index:2;padding:120px 28px;display:flex;flex-direction:column;align-items:center}
+.hero-lockup{width:min(520px,82vw);height:auto;margin-bottom:36px}
+.hero .tag{max-width:520px;font-size:1.05rem;color:var(--muted-inv);margin-bottom:40px}
+.hero .tag strong{color:var(--pale);font-weight:600}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.hero-scroll{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;color:var(--muted-inv);font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;padding:10px}
+.hero-scroll:hover{color:var(--pale)}
+
+/* ticker */
+.ticker{background:var(--deep);color:var(--pale);border-top:1px solid var(--line-inv);overflow:hidden;padding:15px 0}
+.ticker-track{display:flex;gap:52px;width:max-content;animation:tick 30s linear infinite;font-family:var(--display);font-size:.92rem;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;opacity:.9}
+.ticker-track .s{color:var(--gold)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker-track{animation:none;flex-wrap:wrap;width:auto;white-space:normal;justify-content:center}}
+
+/* sections */
+section{padding:120px 0}
+@media(max-width:700px){section{padding:84px 0}}
+
+/* PDP */
+#drop{background:var(--white)}
+.pdp{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:72px;align-items:start}
+@media(max-width:980px){.pdp{grid-template-columns:1fr;gap:44px}}
+.gallery-main{position:relative;background:var(--deep);overflow:hidden;aspect-ratio:1080/860}
+.gallery-main img{width:100%;height:100%;object-fit:cover;transition:opacity .35s var(--ease)}
+.gallery-main .cap{position:absolute;left:0;right:0;bottom:0;padding:14px 18px;background:linear-gradient(0deg,rgba(10,11,21,.78),transparent);color:var(--muted-inv);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:10px}
+@media(max-width:560px){.thumbs{grid-template-columns:repeat(3,1fr)}}
+.thumbs button{position:relative;aspect-ratio:1;background:var(--deep);border:1px solid var(--line);padding:0;cursor:pointer;overflow:hidden;min-height:44px;transition:border-color .2s}
+.thumbs button img{width:100%;height:100%;object-fit:cover;opacity:.75;transition:opacity .2s,transform .3s var(--ease)}
+.thumbs button:hover img{opacity:1;transform:scale(1.05)}
+.thumbs button[aria-current="true"]{border:2px solid var(--ink)}
+.thumbs button[aria-current="true"] img{opacity:1}
+
+.panel{position:sticky;top:104px}
+@media(max-width:980px){.panel{position:static}}
+.panel h1{font-size:clamp(2.5rem,5vw,3.6rem);margin:14px 0 6px}
+.panel .sub{color:var(--muted);font-weight:500;margin-bottom:26px}
+.price-row{display:flex;align-items:baseline;gap:16px;border-top:1px solid var(--line);padding-top:26px;margin-top:6px}
+.price{font-family:var(--display);font-size:2.5rem;font-variant-numeric:tabular-nums}
+.price-why{font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.edition{margin:24px 0 8px}
+.edition .lab{display:flex;justify-content:space-between;font-size:.74rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:9px}
+.edition .lab span:last-child{color:var(--muted)}
+.edition .track{height:6px;background:var(--pale);overflow:hidden}
+.edition .fill{height:100%;background:var(--ink);width:100%;transition:width .8s var(--ease)}
+.panel .own{margin:18px 0 26px;font-family:var(--display);font-size:1.02rem;text-transform:uppercase;line-height:1.35;letter-spacing:.01em}
+.panel .own span{color:var(--gold)}
+.buy{width:100%;min-height:62px;font-size:.92rem}
+.buy-note{margin-top:12px;font-size:.85rem;color:var(--muted);text-align:center;min-height:1.3em}
+.acc{margin-top:34px;border-top:1px solid var(--line)}
+.acc details{border-bottom:1px solid var(--line)}
+.acc summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:19px 2px;cursor:pointer;font-weight:700;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;min-height:44px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary .x{font-family:var(--body);font-weight:400;font-size:1.35rem;line-height:1;color:var(--muted);transition:transform .25s var(--ease)}
+.acc details[open] summary .x{transform:rotate(45deg)}
+.acc .body{padding:2px 2px 22px;color:var(--muted);font-size:.95rem}
+.acc .body ul{list-style:none}
+.acc .body li{display:flex;justify-content:space-between;gap:18px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.acc .body li:last-child{border-bottom:none}
+.acc .body li span:first-child{font-weight:600;color:var(--ink);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding-top:3px;white-space:nowrap}
+.acc .body li span:last-child{text-align:right}
+
+/* film */
+#film{background:var(--deep);color:var(--pale)}
+#film .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px;margin-bottom:46px}
+#film h2{font-size:clamp(2rem,4.5vw,3.4rem)}
+#film .head p{color:var(--muted-inv);max-width:420px}
+.film-frame{position:relative;border:1px solid var(--line-inv)}
+.film-frame video{width:100%;aspect-ratio:1;max-height:78vh;object-fit:cover;background:var(--deep)}
+@media(min-width:900px){.film-frame video{aspect-ratio:16/10}}
+
+/* story */
+#story{background:var(--pale)}
+#story .lead{max-width:760px;margin-bottom:64px}
+#story .lead h2{font-size:clamp(2.1rem,5vw,3.8rem);margin-top:14px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+@media(max-width:900px){.cards{grid-template-columns:1fr}}
+.card{background:var(--white);border:1px solid var(--line);display:flex;flex-direction:column}
+.card .ph{aspect-ratio:4/3;overflow:hidden;background:var(--deep)}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.card:hover .ph img{transform:scale(1.045)}
+.card .tx{padding:30px 28px 34px}
+.card .tx h3{font-family:var(--display);text-transform:uppercase;font-size:1.05rem;margin:10px 0 10px}
+.card .tx p{color:var(--muted);font-size:.94rem}
+
+/* manifesto */
+.manifesto{position:relative;background:var(--deep);color:var(--pale);overflow:hidden}
+.manifesto .bg{position:absolute;inset:0;background:url("img/product-watch.jpg") center/cover no-repeat;opacity:.4}
+.manifesto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,21,.55),rgba(10,11,21,.88))}
+.manifesto .inner{position:relative;z-index:2;text-align:center;padding:150px 28px;max-width:880px;margin:0 auto}
+.manifesto h2{font-size:clamp(2.2rem,6vw,4.8rem)}
+.manifesto h2 .dim{color:var(--muted-inv)}
+.manifesto p{max-width:600px;margin:30px auto 42px;color:var(--muted-inv);font-size:1.05rem}
+
+/* IG */
+#ig .ig-card{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:30px;border:1px solid var(--line);padding:52px 46px}
+#ig h3{font-family:var(--display);text-transform:uppercase;font-size:1.5rem;margin:10px 0 8px}
+#ig p{color:var(--muted);max-width:440px}
+.ig-icon{width:22px;height:22px;flex:none}
+
+/* footer */
+footer{background:var(--deep);color:var(--pale);padding:84px 0 0}
+.foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:44px;padding-bottom:64px}
+.foot-brand img{height:74px;width:auto}
+.foot-brand p{margin-top:18px;max-width:300px;color:var(--muted-inv);font-size:.9rem}
+.foot-col h4{font-size:.72rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--muted-inv);margin-bottom:18px}
+.foot-col ul{list-style:none}
+.foot-col a{display:inline-block;text-decoration:none;padding:7px 0;font-size:.92rem;color:var(--pale);opacity:.85;transition:opacity .2s,color .2s}
+.foot-col a:hover{opacity:1;color:var(--gold)}
+.foot-base{border-top:1px solid var(--line-inv);padding:26px 0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.78rem;color:var(--muted-inv)}
+.tricolor{height:3px;background:linear-gradient(90deg,#00853F 0 33.3%,#FDEF42 33.3% 66.6%,#E31B23 66.6% 100%)}
+</style>
+</head>
+<body>
+
+<div class="announce" role="status">Everything DPP makes is limited &mdash; <em>Drop 001: The Teranga &middot; 150 pieces</em> &mdash; when it&rsquo;s gone, it&rsquo;s gone</div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="DPP — Don't Postpone Passion, home">
+      <img src="img/logo-mark.png" alt="DPP logo" width="52" height="46">
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="#drop">The Drop</a></li>
+        <li><a href="#film">The Film</a></li>
+        <li><a href="#story">The Story</a></li>
+        <li><a href="https://www.instagram.com/reel/DX-AnTnh0BT/" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+    </nav>
+    <a class="btn" href="#drop">Reserve &mdash; $221</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0">
+    <video autoplay muted loop playsinline preload="metadata" poster="img/teaser-poster.jpg" aria-label="DPP brand film — The Teranga, shot in Copenhagen">
+      <source src="teaser.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+      <img class="hero-lockup logo-white" src="img/logo-lockup.png" alt="DPP — Don't Postpone Passion" width="1050" height="762">
+      <p class="tag"><strong>Drop 001 &mdash; The Teranga.</strong> A limited wooden timepiece rooted in Senegal. <strong>150 people will own this.</strong> The rest will watch.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-inverse" href="#drop">Reserve yours &mdash; $221</a>
+        <a class="btn btn-outline-inv" href="#film">Watch the film</a>
+      </div>
+    </div>
+    <a class="hero-scroll" href="#drop">Scroll</a>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Don&rsquo;t Postpone Passion</span><span class="s">&#9733;</span>
+      <span>Teranga</span><span class="s">&#9733;</span>
+      <span>150 pieces &mdash; never re-issued</span><span class="s">&#9733;</span>
+      <span>Rooted in Senegal &middot; +221</span><span class="s">&#9733;</span>
+      <span>Don&rsquo;t Postpone Passion</span><span class="s">&#9733;</span>
+      <span>Teranga</span><span class="s">&#9733;</span>
+      <span>150 pieces &mdash; never re-issued</span><span class="s">&#9733;</span>
+      <span>Rooted in Senegal &middot; +221</span><span class="s">&#9733;</span>
+    </div>
+  </div>
+
+  <!-- PDP -->
+  <section id="drop">
+    <div class="wrap pdp">
+      <div class="rv">
+        <div class="gallery-main">
+          <img id="g-main" src="img/product-watch.jpg" alt="The Teranga watch — dark profile with engraved hourglass crown" width="1080" height="620">
+          <p class="cap" id="g-cap">The Teranga &mdash; hourglass crown detail</p>
+        </div>
+        <div class="thumbs" role="group" aria-label="Product gallery">
+          <button type="button" aria-current="true" data-src="img/product-watch.jpg" data-cap="The Teranga — hourglass crown detail" data-alt="The Teranga watch — dark profile with engraved hourglass crown"><img src="img/product-watch.jpg" alt="" width="200" height="200"></button>
+          <button type="button" aria-current="false" data-src="img/teaser-poster.jpg" data-cap="Drop 001 — 150 people will own this" data-alt="Drop 001 poster — the Teranga watch, 150 people will own this, the rest will watch"><img src="img/teaser-poster.jpg" alt="" width="200" height="200"></button>
+          <button type="button" aria-current="false" data-src="img/still-ledge.jpg" data-cap="From the film — Copenhagen" data-alt="Film still — sitting on a rooftop ledge above Copenhagen at dusk"><img src="img/still-ledge.jpg" alt="" width="200" height="200"></button>
+          <button type="button" aria-current="false" data-src="img/still-bars.jpg" data-cap="From the film — first light" data-alt="Film still — pull-ups at an outdoor bar at sunrise"><img src="img/still-bars.jpg" alt="" width="200" height="200"></button>
+          <button type="button" aria-current="false" data-src="img/still-dawn.jpg" data-cap="From the film — the city wakes" data-alt="Film still — sun flare between buildings with a crane on the skyline"><img src="img/still-dawn.jpg" alt="" width="200" height="200"></button>
+          <button type="button" aria-current="false" data-src="img/logo-card.jpg" data-cap="DPP — Don't Postpone Passion" data-alt="DPP logo card — Don't Postpone Passion"><img src="img/logo-card.jpg" alt="" width="200" height="200"></button>
+        </div>
+      </div>
+
+      <div class="panel rv">
+        <p class="micro gold">Drop 001 &mdash; Limited by design</p>
+        <h1 class="display">The Teranga</h1>
+        <p class="sub">Wooden timepiece &middot; baobab-engraved caseback &middot; individually numbered</p>
+        <p>Teranga is the Senegalese art of hospitality &mdash; showing up fully and holding nothing back. This is that idea, strapped to your wrist: hand-finished wood, an hourglass pressed into the crown, and a baobab carved into the back. One instruction. Don&rsquo;t postpone passion.</p>
+        <div class="price-row">
+          <span class="price">$221</span>
+          <span class="price-why">+221 &mdash; the code for Senegal</span>
+        </div>
+        <div class="edition">
+          <div class="lab"><span>Edition of 150</span><span id="pieces-left">150 available</span></div>
+          <div class="track"><div class="fill" id="edition-fill"></div></div>
+        </div>
+        <p class="own">150 people will own this. <span>The rest will watch.</span></p>
+        <a class="btn buy" id="buy-btn" href="#" rel="noopener">Reserve your number &mdash; $221</a>
+        <p class="buy-note" id="buy-note" aria-live="polite"></p>
+        <div class="acc">
+          <details open>
+            <summary>The details <span class="x" aria-hidden="true">+</span></summary>
+            <div class="body">
+              <ul>
+                <li><span>Case</span><span>Hand-finished natural wood</span></li>
+                <li><span>Crown</span><span>Engraved hourglass &mdash; time is the whole point</span></li>
+                <li><span>Caseback</span><span>Baobab engraving + your edition number</span></li>
+                <li><span>Edition</span><span>150 pieces worldwide, never re-issued</span></li>
+              </ul>
+            </div>
+          </details>
+          <details>
+            <summary>Why 221 <span class="x" aria-hidden="true">+</span></summary>
+            <div class="body"><p>+221 is Senegal&rsquo;s calling code &mdash; the roots of the brand, carried in the price of every drop. Teranga and the baobab come from the same soil: generosity as a way of life, and a tree that stands for centuries.</p></div>
+          </details>
+          <details>
+            <summary>Shipping &amp; the promise <span class="x" aria-hidden="true">+</span></summary>
+            <div class="body"><p>Worldwide, tracked. Every piece ships numbered, and DPP never re-issues an edition &mdash; once the 150 are claimed, The Teranga is history.</p></div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILM -->
+  <section id="film">
+    <div class="wrap">
+      <div class="head rv">
+        <div>
+          <p class="micro gold">The Film</p>
+          <h2 class="display">Shot in Denmark.<br>Rooted in Senegal.</h2>
+        </div>
+        <p>The Drop 001 teaser &mdash; passion at first light, on rooftops, and after dark. Sound on.</p>
+      </div>
+      <div class="film-frame rv">
+        <video controls preload="metadata" poster="img/teaser-poster.jpg">
+          <source src="teaser.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story">
+    <div class="wrap">
+      <div class="lead rv">
+        <p class="micro gold">The Story</p>
+        <h2 class="display">Passion doesn&rsquo;t wait for permission.</h2>
+      </div>
+      <div class="cards">
+        <div class="card rv">
+          <div class="ph"><img src="img/still-dawn.jpg" alt="Sunlight breaking between buildings at dawn" loading="lazy" width="1080" height="810"></div>
+          <div class="tx">
+            <p class="micro gold">First light</p>
+            <h3>Don&rsquo;t Postpone Passion</h3>
+            <p>The thing you keep pushing to &ldquo;someday&rdquo; is the thing DPP exists to un-postpone. Every piece we make is a physical reminder to move now &mdash; while the city is still asleep.</p>
+          </div>
+        </div>
+        <div class="card rv">
+          <div class="ph"><img src="img/still-bars.jpg" alt="Pull-ups on an outdoor bar at sunrise" loading="lazy" width="1080" height="810"></div>
+          <div class="tx">
+            <p class="micro gold">The work</p>
+            <h3>Earned, not bought</h3>
+            <p>Passion is reps nobody watches. The hourglass on the crown isn&rsquo;t decoration &mdash; it&rsquo;s the scoreboard. You don&rsquo;t get the hours back. You get what you did with them.</p>
+          </div>
+        </div>
+        <div class="card rv">
+          <div class="ph"><img src="img/still-moon.jpg" alt="Full moon through silhouetted trees at night" loading="lazy" width="1080" height="810"></div>
+          <div class="tx">
+            <p class="micro gold">After dark</p>
+            <h3>Teranga, always</h3>
+            <p>Senegalese hospitality means you show up whole &mdash; for your people and your craft. The baobab on the caseback is its symbol: rooted deep, standing for centuries, sheltering everyone who comes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto" style="padding:0">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="inner rv">
+      <p class="micro gold">The DPP Law</p>
+      <h2 class="display">Everything we make is limited. <span class="dim">No restocks. No re-issues. Ever.</span></h2>
+      <p>Scarcity isn&rsquo;t a marketing trick here &mdash; it&rsquo;s the philosophy. A drop, like a day, only comes once. When the last number goes, the piece is history.</p>
+      <a class="btn btn-inverse" href="#drop">Claim your number</a>
+    </div>
+  </section>
+
+  <!-- IG -->
+  <section id="ig">
+    <div class="wrap">
+      <div class="ig-card rv">
+        <div>
+          <p class="micro gold">Latest from the feed</p>
+          <h3>Follow the countdown</h3>
+          <p>The Teranga teaser is live on Instagram. Drop dates, edition numbers, and what&rsquo;s next &mdash; it lands there first.</p>
+        </div>
+        <a class="btn btn-outline" href="https://www.instagram.com/reel/DX-AnTnh0BT/" target="_blank" rel="noopener">
+          <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+          Watch the reel
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <img class="logo-white" src="img/logo-mark.png" alt="DPP logo" width="83" height="74">
+      <p>Don&rsquo;t Postpone Passion. Rooted in Senegal (+221). Every piece limited, numbered, and never re-issued.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#drop">Drop 001 &mdash; The Teranga</a></li>
+        <li><a href="#film">The Film</a></li>
+        <li><a href="#story">The Story</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/reel/DX-AnTnh0BT/" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-base">
+    <span>&copy; 2026 DPP &mdash; Don&rsquo;t Postpone Passion</span>
+    <span>150 will own it. The rest will watch.</span>
+  </div>
+  <div class="tricolor" aria-hidden="true"></div>
+</footer>
+
+<script>
+/* ===== PASTE YOUR STRIPE PAYMENT LINK BETWEEN THE QUOTES =====
+   Stripe dashboard → Payment Links → New → "The Teranga" at $221,
+   limit quantity to 150 → copy URL, e.g. https://buy.stripe.com/xxxx */
+var STRIPE_PAYMENT_LINK = "";
+
+/* Edition: bump SOLD as pieces go */
+var EDITION = 150, SOLD = 0;
+
+var buyBtn = document.getElementById('buy-btn');
+var buyNote = document.getElementById('buy-note');
+if (STRIPE_PAYMENT_LINK) {
+  buyBtn.href = STRIPE_PAYMENT_LINK;
+} else {
+  buyBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    buyNote.textContent = 'Checkout opens when Drop 001 goes live — follow the IG for the date.';
+  });
+}
+var left = Math.max(0, EDITION - SOLD);
+document.getElementById('pieces-left').textContent = left + ' available';
+document.getElementById('edition-fill').style.width = (left / EDITION * 100) + '%';
+
+/* Gallery */
+var main = document.getElementById('g-main');
+var cap = document.getElementById('g-cap');
+var thumbs = document.querySelectorAll('.thumbs button');
+thumbs.forEach(function (b) {
+  b.addEventListener('click', function () {
+    thumbs.forEach(function (o) { o.setAttribute('aria-current', 'false'); });
+    b.setAttribute('aria-current', 'true');
+    main.style.opacity = 0;
+    setTimeout(function () {
+      main.src = b.dataset.src;
+      main.alt = b.dataset.alt;
+      cap.textContent = b.dataset.cap;
+      main.style.opacity = 1;
+    }, 180);
+  });
+});
+
+/* Reveal on scroll */
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!reduce && 'IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+} else {
+  document.querySelectorAll('.rv').forEach(function (el) { el.classList.add('in'); });
+}
+
+/* Reduced motion: no autoplay on the hero film */
+if (reduce) {
+  var v = document.querySelector('.hero video');
+  if (v) { v.removeAttribute('autoplay'); v.pause(); }
+}
+</script>
+</body>
+</html>
