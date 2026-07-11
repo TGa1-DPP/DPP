@@ -169,8 +169,32 @@ section{padding:120px 0}
 .acc .body li span:first-child{font-weight:600;color:var(--ink);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding-top:3px;white-space:nowrap}
 .acc .body li span:last-child{text-align:right}
 
+/* catalog */
+#catalog{background:var(--deep);color:var(--pale)}
+#catalog .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px;margin-bottom:46px}
+#catalog h2{font-size:clamp(2rem,4.5vw,3.4rem)}
+#catalog .head p{color:var(--muted-inv);max-width:420px}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+@media(max-width:900px){.cat-grid{grid-template-columns:1fr}}
+.cat-card{display:flex;flex-direction:column;border:1px solid var(--line-inv);text-decoration:none;color:inherit;transition:border-color .25s,transform .25s var(--ease)}
+.cat-card:hover{border-color:rgba(238,241,249,.45);transform:translateY(-4px)}
+.cat-ph{position:relative;aspect-ratio:1;overflow:hidden;background:var(--deep)}
+.cat-ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.cat-card:hover .cat-ph img{transform:scale(1.045)}
+.cat-ph .num{position:absolute;top:14px;left:16px;z-index:2;font-family:var(--display);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pale);text-shadow:0 1px 8px rgba(10,11,21,.8)}
+.cat-vault .cat-ph img{opacity:.18}
+.cat-vault .q{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:4.5rem;color:var(--pale);opacity:.55}
+.cat-tx{display:flex;flex-direction:column;gap:8px;flex:1;padding:24px 22px 26px}
+.cat-tx h3{font-family:var(--display);text-transform:uppercase;font-size:1.1rem}
+.cat-tx .meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;color:var(--muted-inv);font-size:.85rem}
+.chip{display:inline-flex;align-items:center;gap:9px;margin-top:auto;padding-top:16px;font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pale)}
+.chip .dot{flex:none;width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+.chip.soon .dot{background:var(--muted-inv);animation:none}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.chip .dot{animation:none}}
+
 /* film */
-#film{background:var(--deep);color:var(--pale)}
+#film{background:var(--deep);color:var(--pale);border-top:1px solid var(--line-inv)}
 #film .head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:18px;margin-bottom:46px}
 #film h2{font-size:clamp(2rem,4.5vw,3.4rem)}
 #film .head p{color:var(--muted-inv);max-width:420px}
@@ -232,6 +256,7 @@ footer{background:var(--deep);color:var(--pale);padding:84px 0 0}
     <nav aria-label="Main">
       <ul class="nav-links">
         <li><a href="#drop">The Drop</a></li>
+        <li><a href="#catalog">Catalog 01</a></li>
         <li><a href="#film">The Film</a></li>
         <li><a href="#story">The Story</a></li>
         <li><a href="https://www.instagram.com/reel/DX-AnTnh0BT/" target="_blank" rel="noopener">Instagram</a></li>
@@ -328,6 +353,45 @@ footer{background:var(--deep);color:var(--pale);padding:84px 0 0}
             <div class="body"><p>Worldwide, tracked. Every piece ships numbered, and DPP never re-issues an edition &mdash; once the 150 are claimed, The Teranga is history.</p></div>
           </details>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATALOG 01 -->
+  <section id="catalog">
+    <div class="wrap">
+      <div class="head rv">
+        <div>
+          <p class="micro gold">Catalog 01 &mdash; live inventory</p>
+          <h2 class="display">Everything DPP.<br>All of it counted.</h2>
+        </div>
+        <p>The full catalog, tracked live. When a number hits zero it never comes back &mdash; no restocks, no re-issues, no exceptions.</p>
+      </div>
+      <div class="cat-grid">
+        <a class="cat-card rv" href="#drop">
+          <div class="cat-ph"><span class="num">Drop 001</span><img src="img/product-watch.jpg" alt="The Teranga — wooden watch, hourglass crown" loading="lazy" width="1080" height="1080"></div>
+          <div class="cat-tx">
+            <h3>The Teranga</h3>
+            <div class="meta"><span>Wooden timepiece &middot; numbered</span><span>$221</span></div>
+            <span class="chip"><span class="dot" aria-hidden="true"></span><span data-stock="teranga">150 of 150 available</span></span>
+          </div>
+        </a>
+        <a class="cat-card rv" href="https://www.instagram.com/reel/DX-AnTnh0BT/" target="_blank" rel="noopener">
+          <div class="cat-ph"><span class="num">Drop 002</span><img src="img/logo-card.jpg" alt="DPP flagship tee — preview coming soon" loading="lazy" width="1080" height="1080"></div>
+          <div class="cat-tx">
+            <h3>The Flagship Tee</h3>
+            <div class="meta"><span>Heavyweight &middot; numbered</span><span>$&mdash;</span></div>
+            <span class="chip soon"><span class="dot" aria-hidden="true"></span><span data-stock="tee">Preview soon &mdash; IG first</span></span>
+          </div>
+        </a>
+        <a class="cat-card cat-vault rv" href="https://www.instagram.com/reel/DX-AnTnh0BT/" target="_blank" rel="noopener">
+          <div class="cat-ph"><span class="num">Drop 003</span><img src="img/still-street.jpg" alt="" loading="lazy" width="1080" height="1080"><span class="q" aria-hidden="true">?</span></div>
+          <div class="cat-tx">
+            <h3>In the vault</h3>
+            <div class="meta"><span>Being vetted now</span><span>$&mdash;</span></div>
+            <span class="chip soon"><span class="dot" aria-hidden="true"></span><span>Classified &mdash; IG gets it first</span></span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -450,7 +514,10 @@ footer{background:var(--deep);color:var(--pale);padding:84px 0 0}
    limit quantity to 150 → copy URL, e.g. https://buy.stripe.com/xxxx */
 var STRIPE_PAYMENT_LINK = "";
 
-/* Edition: bump SOLD as pieces go */
+/* ===== LIVE INVENTORY — tethered to inventory.json in this repo =====
+   Day-to-day you only touch inventory.json: bump "sold", commit, and
+   every counter on the site (PDP bar + Catalog 01 chips) updates within
+   a minute. The numbers below are just the offline fallback. */
 var EDITION = 150, SOLD = 0;
 
 var buyBtn = document.getElementById('buy-btn');
@@ -463,9 +530,35 @@ if (STRIPE_PAYMENT_LINK) {
     buyNote.textContent = 'Checkout opens when Drop 001 goes live — follow the IG for the date.';
   });
 }
-var left = Math.max(0, EDITION - SOLD);
-document.getElementById('pieces-left').textContent = left + ' available';
-document.getElementById('edition-fill').style.width = (left / EDITION * 100) + '%';
+
+function renderStock(edition, sold) {
+  var left = Math.max(0, edition - sold);
+  document.getElementById('pieces-left').textContent = left ? left + ' available' : 'Sold out';
+  document.getElementById('edition-fill').style.width = (left / edition * 100) + '%';
+  var chip = document.querySelector('[data-stock="teranga"]');
+  if (chip) chip.textContent = left ? left + ' of ' + edition + ' available' : 'Sold out — never re-issued';
+  if (!left) {
+    buyBtn.textContent = 'Sold out — the rest will watch';
+    buyBtn.setAttribute('aria-disabled', 'true');
+    buyBtn.style.pointerEvents = 'none';
+    buyBtn.style.opacity = '.55';
+  }
+}
+renderStock(EDITION, SOLD);
+
+fetch('inventory.json?v=' + Date.now(), { cache: 'no-store' })
+  .then(function (r) { return r.json(); })
+  .then(function (inv) {
+    var p = inv.products || {};
+    if (p.teranga) renderStock(p.teranga.edition, p.teranga.sold);
+    var teeChip = document.querySelector('[data-stock="tee"]');
+    if (p.tee && teeChip && p.tee.status === 'live') {
+      var teeLeft = Math.max(0, p.tee.edition - p.tee.sold);
+      teeChip.textContent = teeLeft ? teeLeft + ' of ' + p.tee.edition + ' available' : 'Sold out — never re-issued';
+      teeChip.parentElement.classList.remove('soon');
+    }
+  })
+  .catch(function () { /* offline / local file — fallback numbers already rendered */ });
 
 /* Stripe sends buyers back here with ?paid=1 (set the Payment Link's
    confirmation to "Redirect to your website" → https://tga1-dpp.github.io/DPP/?paid=1) */

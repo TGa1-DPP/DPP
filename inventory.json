@@ -1,0 +1,7 @@
+{
+  "updated": "2026-07-11",
+  "products": {
+    "teranga": { "name": "The Teranga", "edition": 150, "sold": 0, "status": "reserve" },
+    "tee": { "name": "The Flagship Tee", "edition": null, "sold": 0, "status": "preview" }
+  }
+}
