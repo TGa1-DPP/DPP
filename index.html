@@ -8,7 +8,9 @@
 <meta property="og:title" content="DPP — The Teranga. 150 people will own this.">
 <meta property="og:description" content="Don't Postpone Passion. A limited wooden timepiece rooted in Senegal — $221, 150 numbered pieces, baobab-engraved caseback.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="img/teaser-poster.jpg">
+<meta property="og:url" content="https://tga1-dpp.github.io/DPP/">
+<meta property="og:image" content="https://tga1-dpp.github.io/DPP/img/teaser-poster.jpg">
+<link rel="canonical" href="https://tga1-dpp.github.io/DPP/">
 <link rel="icon" type="image/png" href="img/logo-mark.png">
 
 <!--
@@ -31,7 +33,7 @@
   "name": "The Teranga — DPP Drop 001",
   "brand": {"@type": "Brand", "name": "DPP — Don't Postpone Passion"},
   "description": "Limited wooden timepiece rooted in Senegal. 150 numbered pieces. Baobab-engraved caseback, hourglass crown.",
-  "image": "img/product-watch.jpg",
+  "image": "https://tga1-dpp.github.io/DPP/img/product-watch.jpg",
   "offers": {"@type": "Offer", "price": "221", "priceCurrency": "USD", "availability": "https://schema.org/LimitedAvailability"}
 }
 </script>
@@ -464,6 +466,13 @@ if (STRIPE_PAYMENT_LINK) {
 var left = Math.max(0, EDITION - SOLD);
 document.getElementById('pieces-left').textContent = left + ' available';
 document.getElementById('edition-fill').style.width = (left / EDITION * 100) + '%';
+
+/* Stripe sends buyers back here with ?paid=1 (set the Payment Link's
+   confirmation to "Redirect to your website" → https://tga1-dpp.github.io/DPP/?paid=1) */
+if (new URLSearchParams(location.search).get('paid')) {
+  buyNote.textContent = 'Order confirmed — your numbered Teranga is reserved. Receipt is in your email.';
+  document.getElementById('drop').scrollIntoView();
+}
 
 /* Gallery */
 var main = document.getElementById('g-main');
